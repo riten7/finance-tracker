@@ -3,19 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Button, Divider, Header } from 'semantic-ui-react';
 
-import AccountForm from '../../components/AccountForm';
+import AccountForm from '../../containers/Account/AccountForm';
 import AccountList from './AccountList';
 import { addAccount } from '../../actions/actionCreators';
-
-import storageService from '../../storage/localDb';
 
 import './account.css';
 
 const AccountSetup = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const storage = new storageService('accounts');
-
+  
   const { accounts } = useSelector(state => state.accounts);
 
   const handleFormSubmit = (account) => {
@@ -23,7 +20,6 @@ const AccountSetup = () => {
   }
 
   const finalizeFormSubmit = () => {
-    storage.save(accounts);
     history.push("/dashboard");
   }
 

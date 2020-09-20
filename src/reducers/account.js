@@ -3,13 +3,26 @@ const initialState = {
 };
 
 const accountReducer = (state = initialState, action) => {
-  console.log('12323423423', action)
   switch (action.type) {
-    case 'CREATE_ACCOUNT':
+    case 'ADD_ACCOUNT':
       return { ...state, accounts: [...state.accounts, action.payload] };
     
     case 'LOAD_ACCOUNTS':
-      return {...state, accounts: action.payload }
+      return {...state, accounts: action.payload };
+    
+    case 'UPDATE_ACCOUNT':
+      const { id, amount, type } = action.payload;
+      const index = state.accounts.findIndex(acc => acc.id === id);
+      const newArray = [...state.accounts];
+      if (type === 'income'){
+        newArray[index].balance += amount;
+      } else {
+        newArray[index].balance -= amount;
+      }
+      return { 
+         ...state,
+        accounts: newArray,
+      };
 
     default:
       return state;
@@ -17,3 +30,7 @@ const accountReducer = (state = initialState, action) => {
 }
 
 export default accountReducer;
+
+export const getUpdatedArray = () => {
+  
+}

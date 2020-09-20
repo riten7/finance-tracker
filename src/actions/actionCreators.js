@@ -1,9 +1,19 @@
 export const addAccount = (data) => ({
-  type: 'CREATE_ACCOUNT',
+  type: 'ADD_ACCOUNT',
   payload: data,
 });
 
 export const loadAccounts = (data) => ({
   type: 'LOAD_ACCOUNTS',
-  payload: data
+  payload: data,
+});
+
+export const addTransaction = (data) => ({
+  type: 'ADD_TX',
+  payload: data,
+});
+
+export const updateAccount = (data) => ({
+  type: 'UPDATE_ACCOUNT',
+  payload: data,
 })

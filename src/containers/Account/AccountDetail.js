@@ -2,16 +2,13 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Divider } from 'semantic-ui-react';
 
-import AccountList from '../Account/AccountList';
-import AccountForm from '../../components/AccountForm';
+import AccountList from './AccountList';
+import AccountForm from './AccountForm';
 import ShowModal from '../../components/ShowModal';
 import { addAccount } from '../../actions/actionCreators';
 
-import storageService from '../../storage/localDb';
-
 const AccountDetail = () => {
   const dispatch = useDispatch();
-  const storage = new storageService('accounts');
   const [showModal, setShowModal] = React.useState(false);
   const { accounts } = useSelector(state => state.accounts);
   const addNewAccount = () => {
@@ -21,9 +18,6 @@ const AccountDetail = () => {
     setShowModal(false);
     dispatch(addAccount(account));
   }
-  React.useEffect(() => {
-    storage.save(accounts);
-  }, [storage, accounts]);
 
   return (
     <div className="account-detail-container">

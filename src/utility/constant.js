@@ -39,6 +39,22 @@ export const groupAccounts = (accounts) => {
   return grouped;
 };
 
+export const accountOptionsForTx = (accounts) => {
+  const data = accounts.reduce((acc, item) => {
+    return acc.concat({
+      key: item.id,
+      value: item.id,
+      text: item.name
+    })
+  }, []);
+  return data;
+}
+
+export const getAccountName = (accounts, id) => {
+  const account = accounts.find(acc => acc.id === id);
+  return account.name;
+}
+
 function getGroupName(code) {
   return GroupToTextMap[code];
 }

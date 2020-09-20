@@ -1,8 +1,14 @@
 import React from 'react';
 import { Form } from 'semantic-ui-react';
-import { accountTypes, getRandomId } from '../utility/constant';
+import { accountTypes, getRandomId } from '../../utility/constant';
 
 const AccountForm = (props) => {
+
+  const defaultState = {
+      name: '',
+      type: accountTypes[0].value,
+      balance: 0,
+    }
 
   const handleSubmit = () => {
     props.handleFormSubmit({
@@ -12,11 +18,7 @@ const AccountForm = (props) => {
     resetForm();
   }
 
-  const [accountDetail, setAccountDetail] = React.useState({
-    name: '',
-    type: accountTypes[0].value,
-    balance: '',
-  });
+  const [accountDetail, setAccountDetail] = React.useState(defaultState);
   const handleChange = (_, { name, value }) => {
     setAccountDetail({
       ...accountDetail,
@@ -25,11 +27,7 @@ const AccountForm = (props) => {
   };
 
   const resetForm = () => {
-    setAccountDetail({
-      name: '',
-      type: accountTypes[0].value,
-      balance: '',
-    })
+    setAccountDetail(defaultState);
   }
 
   return (
@@ -59,11 +57,11 @@ const AccountForm = (props) => {
         placeholder="Balance"
         label='Balance'
         name="balance"
-        value={accountDetail.balance}
+        value={accountDetail.balance > 0 ? accountDetail.balance : '' }
         onChange={handleChange}
       />
       
-      <Form.Button className="createAccountBtn" width={8} primary content="Save Account" />
+      <Form.Button width={8} primary content="Save Account" />
     </Form>
   );
 }
