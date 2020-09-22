@@ -1,30 +1,28 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import moment from 'moment';
 
 import { Dropdown, Form, Input, Button } from 'semantic-ui-react';
 import SemanticDatepicker from 'react-semantic-ui-datepickers';
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
 
 import { addTransaction, updateAccount } from '../../actions/actionCreators';
-import { accountOptionsForTx, getRandomId, getAccountName } from '../../utility/constant';
-import TransactionList from './TransactionList';
+import { accountOptionsForTx, getRandomId } from '../../utility/constant';
 
-const Transaction = (props) => {
+const TransactionForm = ({ type }) => {
   const dispatch = useDispatch();
   const { accounts } = useSelector(state => state.accounts);
-  
+  const accountOptions = accountOptionsForTx(accounts);
+
   const [tags, setTags] = React.useState([]);
+
   const defaultState = {
-   amount: 0,
-   accountId: accounts[0].id,
-   date: '',
-   note: '',
+    amount: '',
+    accountId: accountOptions[0].value,
+    date: '',
+    note: '',
+    accountName: accountOptions[0].text,
   }
   const [transactionDetail, setTransactionDetail] = React.useState(defaultState);
-
-  const accountOptions = accountOptionsForTx(accounts);
-  const accountName = getAccountName(accounts, transactionDetail.accountId)
 
   const onAddTag = (_, { value }) => {
     setTags([...tags, {
@@ -35,33 +33,37 @@ const Transaction = (props) => {
   }
 
   const handleChange = (_, { name, value }) => {
-     if(name === 'date') {
-      value = moment(value).format("dddd, MMMM Do YYYY");
-     }
-     if(name === 'amount') {
-       value = parseFloat(value);
-     }
-     setTransactionDetail({
+    if (name === 'amount') {
+      value = parseFloat(value);
+    }
+    setTransactionDetail({
       ...transactionDetail,
       [name]: value
     });
   }
 
   const handleSubmit = () => {
-    console.log('transactionDetail', transactionDetail);
     resetForm()
     dispatch(addTransaction({
       ...transactionDetail,
       id: getRandomId(),
-      type: props.type,
-      accountName,
+      type,
     }));
     dispatch(updateAccount({
       id: transactionDetail.accountId,
       amount: transactionDetail.amount,
-      type: props.type,
+      type,
     }));
   };
+
+  const handleDropdownChange = (_, { value }) => {
+    const account = accountOptions.find(item => item.key === value);
+    setTransactionDetail({
+      ...transactionDetail,
+      accountId: account.value,
+      accountName: account.text,
+    });
+  }
 
   const resetForm = () => {
     setTransactionDetail(defaultState);
@@ -77,8 +79,8 @@ const Transaction = (props) => {
               name="account"
               selection
               options={accountOptions}
-              value={accountOptions[transactionDetail.accountId]}
-              onChange={handleChange}
+              value={transactionDetail.accountId}
+              onChange={handleDropdownChange}
             />
           </Form.Field>
           <Form.Field width={5}>
@@ -87,7 +89,7 @@ const Transaction = (props) => {
               required
               type="number"
               name="amount"
-              //value={transactionDetail.amount}
+              value={transactionDetail.amount}
               onChange={handleChange}
             />
           </Form.Field>
@@ -104,18 +106,19 @@ const Transaction = (props) => {
               allowAdditions
               closeOnChange
               placeholder="Choose existing tags or add new"
-              //value={this.props.form.tags[this.props.form.kind]}
+              //value={}
               options={tags}
               onChange={handleChange}
               onAddItem={onAddTag}
             />
           </Form.Field>
-          <Form.Field width={5}>
+          <Form.Field width={5} className="transaction-form__date">
             <label>Date</label>
             <SemanticDatepicker
               fluid
               required
               name="date"
+              value={transactionDetail.date}
               onChange={handleChange} />
           </Form.Field>
         </Form.Group>
@@ -130,13 +133,12 @@ const Transaction = (props) => {
             />
           </Form.Field>
           <Form.Field width={5}>
-            <Button primary fluid>Add Expense</Button>
+            <Button primary fluid>{type === 'income' ? 'Add Income' : 'Add Expense'}</Button>
           </Form.Field>
         </Form.Group>
       </Form>
-      <TransactionList />
     </>
   )
 }
 
-export default Transaction;
+export default TransactionForm;

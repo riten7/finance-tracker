@@ -3,6 +3,7 @@ import { Form } from 'semantic-ui-react';
 import { accountTypes, getRandomId } from '../../utility/constant';
 
 const AccountForm = (props) => {
+  const { accountLength, handleFormSubmit } = props;
 
   const defaultState = {
       name: '',
@@ -11,7 +12,7 @@ const AccountForm = (props) => {
     }
 
   const handleSubmit = () => {
-    props.handleFormSubmit({
+    handleFormSubmit({
       ...accountDetail, 
       id: getRandomId(),
     });
@@ -61,7 +62,7 @@ const AccountForm = (props) => {
         onChange={handleChange}
       />
       
-      <Form.Button width={8} primary content="Save Account" />
+      <Form.Button width={8} primary disabled={accountLength > 3} content="Save Account" />
     </Form>
   );
 }

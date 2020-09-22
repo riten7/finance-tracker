@@ -3,11 +3,6 @@ export const addAccount = (data) => ({
   payload: data,
 });
 
-export const loadAccounts = (data) => ({
-  type: 'LOAD_ACCOUNTS',
-  payload: data,
-});
-
 export const addTransaction = (data) => ({
   type: 'ADD_TX',
   payload: data,

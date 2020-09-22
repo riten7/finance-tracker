@@ -6,3 +6,7 @@
 .account-setup-container .form-submit .button {
   margin: 0;
 }
+
+.account__balance {
+  float: right;
+}

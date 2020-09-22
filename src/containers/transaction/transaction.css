@@ -5,3 +5,7 @@
 .transaction-container .red {
   color: red;
 }
+
+.transaction-form__date .field {
+  display: block !important;
+}

@@ -10,9 +10,9 @@ const NavigationMenu = () => {
   }
   return (
     <Segment inverted>
-      <Menu inverted secondary>
+      <Menu inverted secondary widths={4}>
         <Menu.Item
-          as={Link} to="/dashboard"
+          as={Link} to="/"
           name='dashboard'
           active={currentMenu === 'dashboard'}
           onClick={handleItemClick}
