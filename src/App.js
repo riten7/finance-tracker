@@ -9,6 +9,7 @@ import AccountSetup from "./containers/Account/AccountSetup";
 import Dashboard from './containers/menu/Dashboard';
 import AccountDetail from './containers/Account/AccountDetail';
 import TransactionTab from './containers/transaction/TransactionTab';
+import ExpenseReport from './containers/report/ExpenseReport';
 
 import './App.css';
 
@@ -22,6 +23,7 @@ function App() {
         <PrivateRoute exact path='/' accounts={accounts} component={Dashboard} />
         <PrivateRoute exact path='/account' accounts={accounts} component={AccountDetail} />
         <PrivateRoute exact path='/transaction' accounts={accounts} component={TransactionTab} />
+        <PrivateRoute exact path='/report' accounts={accounts} component={ExpenseReport} />
       </Switch>
     </div>
   );

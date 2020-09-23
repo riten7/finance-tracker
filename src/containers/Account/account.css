@@ -7,6 +7,15 @@
   margin: 0;
 }
 
-.account__balance {
+.account-item {
+  padding: 5px;
+}
+
+.account-item__balance,
+.account-total {
   float: right;
+}
+
+.accounts-form__empty, {
+  text-align: center;
 }

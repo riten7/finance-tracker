@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 const GroupToTextMap = {
   'cash': 'Cash',
   'bankAccount': 'Bank Account',
@@ -12,6 +14,29 @@ export const accountTypes = [
   { key: 'credit', text: 'Credit', value: 'credit' },
   { key: 'deposit', text: 'Deposit', value: 'deposit' },
   { key: 'asset', text: 'Asset', value: 'asset' }
+];
+
+export const filterTypes = [
+  {
+    key: 'all',
+    text: 'Show ALL',
+    value: 'all'
+  },
+  {
+    key: '1',
+    text: 'Today',
+    value: '1',
+  },
+  {
+    key: '7',
+    text: 'Last 7 Days',
+    value: '7',
+  },
+  {
+    key: '30',
+    text: 'Last 30 Days',
+    value: '30',
+  }
 ];
 
 export const getRandomId = () => (Math.random().toString(36).replace('0.', ''));
@@ -53,6 +78,38 @@ export const accountOptionsForTx = (accounts) => {
 export const getAccountName = (accounts, id) => {
   const account = accounts.find(acc => acc.id === id);
   return account.name;
+}
+
+export const getSortedTransactions = (transactions) => {
+  return transactions.slice().sort((a, b) => moment(b.date).diff(moment(a.date)));
+}
+
+export const filterTransactionsbyDate = (transactions, value) => {
+  const to = (value === '7') ? moment().subtract(7, 'days') : (value === '30') ? moment().subtract(30, 'days') : (value === '1') ? 'today' : '';
+  if (to === '') return transactions;
+  if (to === 'today') return transactions.filter(tx =>  moment(tx.date).format('ll') === moment().format('ll'));
+  return transactions.filter(item => moment(item.date) <= moment() && moment(item.date) >= to);
+}
+
+export const getReportData = (transactions, txType) => {
+  const reduced = transactions.reduce((acc, { type, tags, amount }) => {
+    tags.forEach(tag => {
+      if (!acc[type]) { acc[type] = {} };
+      acc[type][tag] = (acc[type][tag] || 0) + amount;
+    })
+    return { ...acc }
+  }, {});
+
+  return txType === 'income' ? formatDataForReport(reduced.income) : formatDataForReport(reduced.expense);
+}
+
+function formatDataForReport(obj) {
+  if(!obj) return [];
+  const array = [['category', 'amount']];
+  for (const [key, value] of Object.entries(obj)) {
+    array.push([key, value])
+  }
+  return array;
 }
 
 function getGroupName(code) {

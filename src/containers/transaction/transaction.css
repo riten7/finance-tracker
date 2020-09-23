@@ -9,3 +9,11 @@
 .transaction-form__date .field {
   display: block !important;
 }
+
+.transaction-dropdown {
+  margin: 10px;
+}
+
+.transactions-form__empty {
+  text-align: center;
+}

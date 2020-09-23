@@ -9,7 +9,7 @@ import AccountListItem from './AccountListItem';
 const { Panel } = Collapse;
 
 const NoAccounts = () => (
-  <div className="transactions-form__empty">You don't have any accounts created yet.</div>
+  <div className="accounts-form__empty">You don't have any accounts created yet.</div>
 );
 
 const AccountList = () => {
@@ -23,7 +23,7 @@ const AccountList = () => {
       {groupKeys.length > 0 ?
         <Collapse>
           {groupKeys.map(key => (
-            <Panel showArrow={false} header={groups[key].name} key={key} extra={`${groups[key].total} NPR`}>
+            <Panel showArrow={false} header={groups[key].name} key={key} extra={`NPR. ${groups[key].total}`}>
               {groups[key].accounts.map(account => (
                 <AccountListItem
                   key={account.id}

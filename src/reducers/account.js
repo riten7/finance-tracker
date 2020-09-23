@@ -11,7 +11,6 @@ const accountReducer = (state = initialState, action) => {
       const { id, amount, type } = action.payload;
       const index = state.accounts.findIndex(acc => acc.id === id);
       const newArray = [...state.accounts];
-      console.log(newArray)
       if (type === 'income'){
         newArray[index].balance = newArray[index].balance + amount;
       } else {

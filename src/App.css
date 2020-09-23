@@ -3,7 +3,8 @@
 .account-setup-container,
 .dashboard-container,
 .account-detail-container,
-.transaction-container {
+.transaction-container,
+.report-container {
     max-width: 800px;
     margin: 10% auto;
     padding: 2em;

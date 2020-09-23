@@ -19,7 +19,7 @@ const TransactionTab = () => (
     <h2>New Transaction</h2>
     <Tab panes={panes} />
     <Divider />
-    <TransactionList />
+    <TransactionList from = "transaction" />
   </div>
 )
 

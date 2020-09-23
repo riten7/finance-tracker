@@ -1,16 +1,21 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Table, Button, Space, Tag } from 'antd';
+import { Table, Button, Space, Tag, Typography } from 'antd';
+import { EditTwoTone } from '@ant-design/icons';
 import moment from 'moment';
 
-import { EditTwoTone } from '@ant-design/icons';
+import TransactionFilter from './TransactionFilter';
+import { getSortedTransactions, filterTransactionsbyDate } from '../../utility/constant';
+
 import './transaction.css';
 
+const { Text } = Typography;
+
 const NoTransaction = () => (
-  <div className="transactions-form__empty">You don't have any transactions.</div>
+  <div className="transactions-form__empty">You don't have any transactions yet.</div>
 );
 
-const TransactionList = () => {
+const TransactionList = ({from}) => {
   const columns = [
     {
       title: 'Account',
@@ -47,11 +52,12 @@ const TransactionList = () => {
       title: 'Amount',
       dataIndex: 'amount',
       key: 'amount',
+      render: (amount, record) => <Text type={record.type ==='income' ? 'success' : 'danger'}>{`NPR. ${amount}`}</Text>
     },
     {
       title: 'Action',
       key: 'action',
-      render: (text, record) => (
+      render: (_, record) => (
         <Space size="middle">
           <Button shape="circle" icon={<EditTwoTone />} onClick={() => console.log(record)}></Button>
         </Space>
@@ -60,7 +66,9 @@ const TransactionList = () => {
   ];
 
   const { transactions } = useSelector(state => state.transactions);
-  const sortedTransactions = transactions.slice().sort((a, b) => moment(b.date).diff(a.date));
+  const [dayFilter, setDaysFilter] = React.useState('all');
+  const sortedTransactions = getSortedTransactions(filterTransactionsbyDate(transactions, dayFilter));
+
   const [pagination, setPagination] = React.useState({
     current: 1,
     pageSize: 5,
@@ -72,11 +80,20 @@ const TransactionList = () => {
       ...pagination,
       current: pageIndex,
     })
+  };
+
+  const onHandleChange = (_, { value }) => {
+    setDaysFilter(value);
+    setPagination({
+      ...pagination,
+      current: 1,
+    })
   }
 
   return (
     <>
-      <h2>Transactions</h2>
+      <h2>{from ? 'Transactions' : 'Recent Transactions'}</h2>
+      {from && <TransactionFilter onHandleChange={onHandleChange}/>}
       {sortedTransactions.length > 0 ?
         <Table
           rowKey="id"

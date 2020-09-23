@@ -38,7 +38,7 @@ const AccountSetup = () => {
           loan to your friend. 
           </strong>
       </p>
-      <AccountForm accountLength={groups.length} handleFormSubmit={handleFormSubmit} />
+      <AccountForm accountLength={Object.keys(groups).length} handleFormSubmit={handleFormSubmit} />
       {accounts.length > 0 && (
         <div style={{ margin: '1em' }}>
           <AccountList />

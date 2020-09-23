@@ -1,5 +1,6 @@
 import React from 'react';
 
+import AccountWorth from './AccountWorth';
 import AccountList from '../Account/AccountList';
 import TransactionList from '../transaction/TransactionList';
 
@@ -8,6 +9,8 @@ const Dashboard = () => {
     <>
     <div className="dashboard-container">
     <AccountList />
+    <br />
+    <AccountWorth />
     <br />
     <TransactionList />
     </div>
