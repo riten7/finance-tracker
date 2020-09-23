@@ -11,4 +11,19 @@ export const addTransaction = (data) => ({
 export const updateAccount = (data) => ({
   type: 'UPDATE_ACCOUNT',
   payload: data,
+});
+
+export const updateTxModalState = (value) => ({
+  type: 'UPDATE_MODAL_STATE',
+  payload: value,
+});
+
+export const updateTransaction = (data) => ({
+  type: 'UPDATE_TRANSACTION',
+  payload: data,
+});
+
+export const addTag = (data) => ({
+  type: 'ADD_TAG',
+  payload: data
 })

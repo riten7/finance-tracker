@@ -27,7 +27,3 @@ const accountReducer = (state = initialState, action) => {
 }
 
 export default accountReducer;
-
-export const getUpdatedArray = () => {
-  
-}

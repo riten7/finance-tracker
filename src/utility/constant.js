@@ -92,6 +92,7 @@ export const filterTransactionsbyDate = (transactions, value) => {
 }
 
 export const getReportData = (transactions, txType) => {
+  console.log(transactions);
   const reduced = transactions.reduce((acc, { type, tags, amount }) => {
     tags.forEach(tag => {
       if (!acc[type]) { acc[type] = {} };
@@ -104,12 +105,14 @@ export const getReportData = (transactions, txType) => {
 }
 
 function formatDataForReport(obj) {
-  if(!obj) return [];
-  const array = [['category', 'amount']];
+  if(!obj) return {};
+  let category = [];
+  let data = []; 
   for (const [key, value] of Object.entries(obj)) {
-    array.push([key, value])
+    category.push(key);
+    data.push(value);
   }
-  return array;
+  return {category, data};
 }
 
 function getGroupName(code) {

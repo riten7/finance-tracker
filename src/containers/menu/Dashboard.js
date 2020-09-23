@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AccountWorth from './AccountWorth';
+import AccountWorth from '../Account/AccountWorth';
 import AccountList from '../Account/AccountList';
 import TransactionList from '../transaction/TransactionList';
 
