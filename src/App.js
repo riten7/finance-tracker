@@ -5,9 +5,9 @@ import { useSelector } from 'react-redux';
 import ParticlesBg from "particles-bg";
 
 import PrivateRoute from './PrivateRoute';
-import AccountSetup from "./containers/Account/AccountSetup";
+import AccountSetup from "./containers/account/AccountSetup";
 import Dashboard from './containers/menu/Dashboard';
-import AccountDetail from './containers/Account/AccountDetail';
+import AccountDetail from './containers/account/AccountDetail';
 import TransactionTab from './containers/transaction/TransactionTab';
 import ExpenseReport from './containers/report/ExpenseReport';
 

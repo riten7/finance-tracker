@@ -4,7 +4,6 @@ import { Link, useHistory} from 'react-router-dom';
 
 const NavigationMenu = () => {
   const history = useHistory();
-  console.log(history);
   const [currentMenu, setCurrentMenu] = React.useState(history.location.pathname);
 
   const handleItemClick = (_, { name }) => {

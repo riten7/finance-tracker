@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Divider } from 'semantic-ui-react';
 import { DatePicker } from 'antd';
+import { FilterFilled } from '@ant-design/icons';
 import moment from 'moment';
 import Chart from './Chart';
 
@@ -9,7 +11,7 @@ import './report.css'
 const { RangePicker } = DatePicker;
 
 const NoData = () => (
-  <div className="transactions-form__empty">You don't have any transactions with the selected date range</div>
+  <div className="transactions-form__empty">You don't have any transactions within the selected date range</div>
 );
 
 const ExpenseReport = () => {
@@ -30,18 +32,18 @@ const ExpenseReport = () => {
   return (
     <div className="report-container">
       <div className="report-container__picker">
-      <h3>Select dates for desired time period report</h3>
       <RangePicker
+        className="report_input_test"
         onChange={onDateChange}
         format={'YYYY-MM-DD'}
-      />
+        suffixIcon={<FilterFilled />}/>
       </div>
+      <Divider />
       {filteredTransactions.length > 0 ?
       <>
-      <Chart transactions={filteredTransactions} txtype="income" />
+      <Chart transactions={filteredTransactions} txtype="Income" />
       <br />
-      <Chart transactions={filteredTransactions} txtype="expense" />
-      <h4 className="report-container__info">Income and Expense Transactions Report</h4>
+      <Chart transactions={filteredTransactions} txtype="Expense" />
       </>
       : <NoData />}
     </div>

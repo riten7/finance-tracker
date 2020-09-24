@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AccountList component Component renders properly 1`] = `"<h2>Accounts</h2><div class=\\"ant-collapse ant-collapse-icon-position-left\\"><div class=\\"ant-collapse-item ant-collapse-no-arrow\\"><div class=\\"ant-collapse-header\\" role=\\"button\\" tabindex=\\"0\\" aria-expanded=\\"false\\">Cash<div class=\\"ant-collapse-extra\\">NPR. 131406817</div></div></div></div>"`;

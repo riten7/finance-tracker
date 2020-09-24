@@ -15,8 +15,6 @@ const TransactionForm = ({ type, transaction, handleFormSubmit }) => {
   const { tags } = useSelector(state => state.tags);
   const accountOptions = accountOptionsForTx(accounts);
 
-  const txLength = transaction && Object.keys(transaction).length;
-
   const defaultState = transaction ? { ...transaction, date: moment(transaction.date).toDate() } : {
     amount: '',
     accountId: accountOptions[0].value,
@@ -69,7 +67,7 @@ const TransactionForm = ({ type, transaction, handleFormSubmit }) => {
 
   const resetForm = () => {
     setTransactionDetail(defaultState);
-  }
+  };
 
   return (
     <>
@@ -109,7 +107,7 @@ const TransactionForm = ({ type, transaction, handleFormSubmit }) => {
               allowAdditions
               closeOnChange
               placeholder="Choose existing tags or add new"
-              value={transactionDetail ?.tags || []}
+              value={transactionDetail?.tags || []}
               options={tags}
               onChange={handleChange}
               onAddItem={onAddTag}
@@ -122,6 +120,7 @@ const TransactionForm = ({ type, transaction, handleFormSubmit }) => {
               required
               clearable={false}
               name="date"
+              maxDate={moment().toDate()}
               value={transactionDetail.date}
               onChange={handleChange} />
           </Form.Field>

@@ -16,6 +16,14 @@
   float: right;
 }
 
-.accounts-form__empty, {
+.account-item__balance.red {
+  color: red;
+}
+
+.account-item__balance.green {
+  color: green;
+}
+
+.accounts-form__empty {
   text-align: center;
 }

@@ -23,6 +23,11 @@ export const updateTransaction = (data) => ({
   payload: data,
 });
 
+export const deleteTransaction = (data) => ({
+  type: 'DELETE_TRANSACTION',
+  payload: data,
+})
+
 export const addTag = (data) => ({
   type: 'ADD_TAG',
   payload: data

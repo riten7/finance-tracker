@@ -1,7 +1,9 @@
 import React from 'react';
 
-import AccountWorth from '../Account/AccountWorth';
-import AccountList from '../Account/AccountList';
+import { Divider } from 'semantic-ui-react';
+
+import AccountWorth from '../account/AccountWorth';
+import AccountList from '../account/AccountList';
 import TransactionList from '../transaction/TransactionList';
 
 const Dashboard = () => {
@@ -12,6 +14,7 @@ const Dashboard = () => {
     <br />
     <AccountWorth />
     <br />
+    <Divider />
     <TransactionList />
     </div>
     </>

@@ -1,15 +1,16 @@
 import React from 'react';
+import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
 import { Table, Button, Space, Tag, Typography } from 'antd';
-import { EditTwoTone } from '@ant-design/icons';
-import moment from 'moment';
+import { EditTwoTone, InfoCircleTwoTone, DeleteTwoTone } from '@ant-design/icons';
+import { Popup } from 'semantic-ui-react'
 
 import TransactionFilter from './TransactionFilter';
 import ShowModal from '../../components/ShowModal';
 import TransactionForm from './TransactionForm';
 
-import { updateTxModalState, updateTransaction } from '../../actions/actionCreators';
-import { getSortedTransactions, filterTransactionsbyDate } from '../../utility/constant';
+import { updateTransaction, deleteTransaction } from '../../actions/actionCreators';
+import { getSortedTransactions } from '../../utility/constant';
 
 import './transaction.css';
 
@@ -58,7 +59,9 @@ const TransactionList = ({ from }) => {
       key: 'action',
       render: (_, record) => (
         <Space size="middle">
-          <Button shape="circle" icon={<EditTwoTone />} onClick={() => onHandleEdit(record)}></Button>
+          <Button className="editBtn" size="small" shape="circle" icon={<EditTwoTone />} onClick={() => onHandleEdit(record)}></Button>
+          <Button className="deleteBtn" size="small" shape="circle" icon={<DeleteTwoTone />} onClick={() => onHandleDelete(record)}></Button>
+          <Popup content={record.note || 'N/A'} key={record.id} header={'Note'} trigger={<InfoCircleTwoTone style={{fontSize: '20px', color: '#1890ff'}} />} />
         </Space>
       ),
     },
@@ -73,11 +76,15 @@ const TransactionList = ({ from }) => {
     pageSize: 5,
   });
 
-  const sortedTransactions = getSortedTransactions(filterTransactionsbyDate(transactions, dayFilter));
+  const sortedTransactions = getSortedTransactions(transactions, dayFilter);
 
   const onHandleEdit = (record) => {
     setTxModelOpen(true);
     setTxRecord(record);
+  }
+
+  const onHandleDelete = (record) => {
+    dispatch(deleteTransaction(record));
   }
 
   const handleTableChange = (pagination) => {
@@ -94,12 +101,12 @@ const TransactionList = ({ from }) => {
       ...pagination,
       current: 1,
     })
-  }
+  };
 
   const handleFormSubmit = (data) => {
     setTxModelOpen(false);
     dispatch(updateTransaction(data));
-  }
+  };
 
   return (
     <React.Fragment>
@@ -119,7 +126,7 @@ const TransactionList = ({ from }) => {
 
       {txModalOpen && <ShowModal
         open={txModalOpen}
-        title='Add Transaction'
+        title='Update Transaction'
         closeModal={() => setTxModelOpen(false)}>
         <TransactionForm transaction={txRecord} handleFormSubmit={handleFormSubmit} />
       </ShowModal>}

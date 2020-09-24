@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form } from 'semantic-ui-react';
+import { Form, Message } from 'semantic-ui-react';
 import { accountTypes, getRandomId } from '../../utility/constant';
 
 const AccountForm = (props) => {
@@ -13,7 +13,7 @@ const AccountForm = (props) => {
 
   const handleSubmit = () => {
     handleFormSubmit({
-      ...accountDetail, 
+      ...accountDetail,
       id: getRandomId(),
     });
     resetForm();
@@ -61,8 +61,8 @@ const AccountForm = (props) => {
         value={accountDetail.balance > 0 ? accountDetail.balance : '' }
         onChange={handleChange}
       />
-      
-      <Form.Button width={8} primary disabled={accountLength > 3} content="Save Account" />
+      <Form.Button primary disabled={accountLength > 3} content="Save Account" />
+      {accountLength > 3 && <Message size="mini" color='red'>You have already reached the maximum account creation limit!</Message>}
     </Form>
   );
 }

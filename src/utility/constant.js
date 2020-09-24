@@ -80,8 +80,9 @@ export const getAccountName = (accounts, id) => {
   return account.name;
 }
 
-export const getSortedTransactions = (transactions) => {
-  return transactions.slice().sort((a, b) => moment(b.date).diff(moment(a.date)));
+export const getSortedTransactions = (transactions, value) => {
+  const filteredTransactions = filterTransactionsbyDate(transactions, value);
+  return filteredTransactions.slice().sort((a, b) => moment(b.date).diff(moment(a.date)));
 }
 
 export const filterTransactionsbyDate = (transactions, value) => {
@@ -92,16 +93,16 @@ export const filterTransactionsbyDate = (transactions, value) => {
 }
 
 export const getReportData = (transactions, txType) => {
-  console.log(transactions);
   const reduced = transactions.reduce((acc, { type, tags, amount }) => {
+    tags ?
     tags.forEach(tag => {
       if (!acc[type]) { acc[type] = {} };
       acc[type][tag] = (acc[type][tag] || 0) + amount;
-    })
+    }) : acc[type]['Others'] = amount;
     return { ...acc }
   }, {});
 
-  return txType === 'income' ? formatDataForReport(reduced.income) : formatDataForReport(reduced.expense);
+  return txType === 'Income' ? formatDataForReport(reduced.income) : formatDataForReport(reduced.expense);
 }
 
 function formatDataForReport(obj) {

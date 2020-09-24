@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Button, Divider, Header } from 'semantic-ui-react';
 
-import AccountForm from '../../containers/Account/AccountForm';
+import AccountForm from '../../containers/account/AccountForm';
 import AccountList from './AccountList';
 
 import { addAccount } from '../../actions/actionCreators';

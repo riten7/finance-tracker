@@ -1,12 +1,8 @@
 .report-container .report-container__picker {
-  margin: 10px;
+  float: right;
 }
 
 .report-container .report-container__info {
   text-align: center;
   margin: 20px;
-}
-
-.report-container .report-container__exportBtn {
-  float: right;
 }

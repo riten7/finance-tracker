@@ -7,11 +7,15 @@ import {
     ChartCategoryAxisItem,
     ChartSeries,
     ChartSeriesItem,
+    ChartTitle,
+    ChartLegend,
     exportVisual
 } from '@progress/kendo-react-charts';
 import { exportPDF } from '@progress/kendo-drawing';
 import { saveAs } from '@progress/kendo-file-saver';
 import { Button } from 'semantic-ui-react';
+
+import { Divider } from 'semantic-ui-react';
 
 import { getReportData } from '../../utility/constant';
 
@@ -30,22 +34,24 @@ const BarChart = ({ txtype, transactions }) => {
     }
 
   return (
-    !!data &&
+    !!data ?
     <>
-    {/* <h3>{txtype === 'income' ? 'Income Report' : 'Expense Report'}</h3> */}
-    <Button className="report-container__exportBtn" content="Export Report" onClick={onHandlePdfExport} />
+     <Button className="k-button" content="Export as PDF" onClick={onHandlePdfExport} />
      <Chart ref={(cmp) => _chart = cmp}>
+       <ChartTitle height={'20px'} text={`${txtype} Transaction Report`} />
+       <ChartLegend position="top" orientation="horizontal" />
         <ChartValueAxis>
-            <ChartValueAxisItem title={{ text: "Categories" }} />
+            <ChartValueAxisItem title={{ text: `${txtype}`}} />
         </ChartValueAxis>
         <ChartCategoryAxis>
-            <ChartCategoryAxisItem title={{ text: (txtype === 'income' ? 'Income' : 'Expense')}} categories={category} />
+            <ChartCategoryAxisItem title={{ text: "Categories" }} categories={category} />
         </ChartCategoryAxis>
         <ChartSeries>
-            <ChartSeriesItem data={data} type="bar" color={txtype === 'income' ? 'green' : 'red'} />
+            <ChartSeriesItem data={data} type="bar" color={txtype === 'Income' ? 'green' : 'red'} />
         </ChartSeries>
     </Chart>
-    </>
+    <Divider />
+    </> : null
   );
 }
 
