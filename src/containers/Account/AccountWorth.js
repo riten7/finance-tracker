@@ -6,12 +6,12 @@ const { Text } = Typography;
 
 const AccountWorth = () => {
   const { accounts } = useSelector(state => state.accounts);
-  const getTotalWorth = () => accounts.reduce((acc, account) => {
-    return  acc + parseInt(account.balance);
-  }, 0)
+  const totalBalance = accounts.reduce((acc, account) => {
+    return acc + parseInt(account.balance)
+  }, 0);
   return (
     <div>
-    <h2 className="account-total">Total: <Text code><strong>NPR. {getTotalWorth()}</strong></Text></h2>
+    <h2 className="account-total">Total: <Text type={totalBalance > 0 ? 'success' : 'danger'} code><strong>{`NPR. ${totalBalance}`}</strong></Text></h2>
     <br />
     </div>
   );

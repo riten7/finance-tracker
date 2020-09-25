@@ -9,7 +9,7 @@ import TransactionFilter from './TransactionFilter';
 import ShowModal from '../../components/ShowModal';
 import TransactionForm from './TransactionForm';
 
-import { updateTransaction, deleteTransaction } from '../../actions/actionCreators';
+import { updateTransaction, deleteTransaction, updateAccount} from '../../actions/actionCreators';
 import { getSortedTransactions } from '../../utility/constant';
 
 import './transaction.css';
@@ -84,6 +84,7 @@ const TransactionList = ({ from }) => {
   }
 
   const onHandleDelete = (record) => {
+    dispatch(updateAccount({ id: record.accountId, amount: -record.amount, type: record.type }));
     dispatch(deleteTransaction(record));
   }
 

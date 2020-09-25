@@ -21,6 +21,7 @@ const AccountForm = (props) => {
 
   const [accountDetail, setAccountDetail] = React.useState(defaultState);
   const handleChange = (_, { name, value }) => {
+    if(name === 'balance') { parseInt(value)};
     setAccountDetail({
       ...accountDetail,
       [name]: value

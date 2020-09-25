@@ -48,9 +48,10 @@ const TransactionForm = ({ type, transaction, handleFormSubmit }) => {
     } else {
       handleFormSubmit(transactionDetail);
     }
+    const amount = !transaction ? transactionDetail.amount : (transaction.amount !== transactionDetail.amount) ? transactionDetail.amount : 0;
     dispatch(updateAccount({
       id: transactionDetail.accountId,
-      amount: transactionDetail.amount,
+      amount,
       type,
     }));
     resetForm();
@@ -78,6 +79,7 @@ const TransactionForm = ({ type, transaction, handleFormSubmit }) => {
             <Dropdown
               name="account"
               selection
+              disabled={transaction && Object.keys(transaction).length > 0}
               options={accountOptions}
               value={transactionDetail.accountId}
               onChange={handleDropdownChange}

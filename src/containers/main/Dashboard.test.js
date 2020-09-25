@@ -3,7 +3,7 @@ import { shallow } from "enzyme";
 import { Provider } from 'react-redux';
 import configureStore from "redux-mock-store";
 import Dashboard from './Dashboard';
-import data from './data.json';
+import data from '../../__mockData__/data.json';
 
 describe("Dashboard component", () => {
   let wrapper;

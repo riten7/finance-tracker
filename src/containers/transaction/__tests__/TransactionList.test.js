@@ -3,8 +3,7 @@ import { mount } from "enzyme";
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import TransactionList from "../TransactionList";
-
-import data from './data.json';
+import data from '../../../__mockData__/data.json';
 
 const mockStore = configureMockStore();
 
@@ -19,18 +18,18 @@ window.matchMedia = jest.fn().mockImplementation((query) => ({
   dispatchEvent: jest.fn(),
 }));
 
-describe("Transaction Component", () => {
+describe("TransactionList Component works", () => {
   let wrapper;
   const store = mockStore(data);
   it("Component renders properly", () => {
     wrapper = mount(<Provider store={store}><TransactionList from="transaction" /></Provider>);
     expect(wrapper.html()).toMatchSnapshot();
   });
-  it("Edit button wirks well", () => {
+  it("Edit button works well", () => {
     wrapper.find('.editBtn').at(0).simulate('click');
     expect(wrapper.find('.modal')).toHaveLength(1);
   });
-  it('pagination', () => {
+  it('Pagination works well', () => {
     wrapper.find('.ant-pagination-item-1').simulate('click');
     expect(wrapper.find('.ant-pagination-item-1').text()).toBe("1");
   });

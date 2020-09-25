@@ -4,7 +4,7 @@ import { mount } from "enzyme";
 import { act } from 'react-dom/test-utils';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
-import ExpenseReport from "./ExpenseReport";
+import AccountReport from "../AccountReport";
 
 const data = [
   {
@@ -56,7 +56,7 @@ describe("Chart Component renders properly", () => {
 
   const incomeWrapper = mount(
     <Provider store={store}>
-      <ExpenseReport />
+      <AccountReport />
     </Provider>);
 
   it("Component renders successfully", () => {
@@ -78,12 +78,12 @@ describe("Chart Component renders properly", () => {
   });
 });
 
-describe("Chart Component renders properly", () => {
+describe("Chart component renders properly with no data", () => {
   const store = mockStore({ transactions: { transactions: [] } });
 
   const incomeWrapper = mount(
     <Provider store={store}>
-      <ExpenseReport />
+      <AccountReport />
     </Provider>);
 
   it("Component renders successfully", () => {

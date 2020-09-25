@@ -9,13 +9,16 @@ const accountReducer = (state = initialState, action) => {
     
     case 'UPDATE_ACCOUNT':
       const { id, amount, type } = action.payload;
-      const index = state.accounts.findIndex(acc => acc.id === id);
-      const newArray = [...state.accounts];
-      if (type === 'income'){
-        newArray[index].balance = newArray[index].balance + amount;
-      } else {
-        newArray[index].balance = newArray[index].balance - amount;
-      }
+      const newArray = state.accounts.map(item => {
+        if(item.id !== id) {
+          return item;
+        }
+        const balance = (type === 'income') ? item.balance + amount  : item.balance - amount;
+        return {
+          ...item,
+          balance
+        }
+      })
       return { 
          ...state,
         accounts: newArray,

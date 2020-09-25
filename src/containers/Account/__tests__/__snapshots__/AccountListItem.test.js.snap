@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AccountListItem component Component renders properly 1`] = `"<div class=\\"account-item\\"><span>dtrdtr</span><span class=\\"account-item__balance\\">NPR. 131406817</span></div>"`;
+exports[`AccountListItem component Component renders properly 1`] = `"<div class=\\"account-item\\"><span>dtrdtr</span><span class=\\"account-item__balance green\\">NPR. 131406817</span></div>"`;

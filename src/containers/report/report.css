@@ -6,3 +6,13 @@
   text-align: center;
   margin: 20px;
 }
+
+.report-container .menu {
+  align-items: center;
+  justify-content: center;
+}
+
+.report-container .segment {
+  border: none;
+  box-shadow: none;
+}

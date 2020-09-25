@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-import NavigationMenu from './components/NavigationMenu';
+import NavigationMenu from './NavigationMenu';
 
 const PrivateRoute = ({ accounts, component: Component, ...rest }) => {
   const authenticated = accounts.length > 0;

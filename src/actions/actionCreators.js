@@ -13,11 +13,6 @@ export const updateAccount = (data) => ({
   payload: data,
 });
 
-export const updateTxModalState = (value) => ({
-  type: 'UPDATE_MODAL_STATE',
-  payload: value,
-});
-
 export const updateTransaction = (data) => ({
   type: 'UPDATE_TRANSACTION',
   payload: data,
@@ -26,9 +21,9 @@ export const updateTransaction = (data) => ({
 export const deleteTransaction = (data) => ({
   type: 'DELETE_TRANSACTION',
   payload: data,
-})
+});
 
 export const addTag = (data) => ({
   type: 'ADD_TAG',
   payload: data
-})
+});

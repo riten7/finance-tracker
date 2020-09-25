@@ -46,7 +46,7 @@ export const groupAccounts = (accounts) => {
     const group = account.type;
     if (!grouped[group]) {
       grouped[group] = {
-        name: getGroupName(group),
+        name: GroupToTextMap[group],
         accounts: [],
         total: 0
       };
@@ -93,31 +93,47 @@ export const filterTransactionsbyDate = (transactions, value) => {
 }
 
 export const getReportData = (transactions, txType) => {
-  const reduced = transactions.reduce((acc, { type, tags, amount }) => {
-    tags ?
-    tags.forEach(tag => {
-      if (!acc[type]) { acc[type] = {} };
-      acc[type][tag] = (acc[type][tag] || 0) + amount;
-    }) : acc[type]['Others'] = amount;
-    return { ...acc }
+  const reduced = transactions.reduce((acc, { type, accountName, amount }) => {
+    if(!acc[type]) { acc[type] = {}};
+    acc[type][accountName] = (acc[type][accountName] || 0) + amount;
+    return { ...acc}
   }, {});
-
-  return txType === 'Income' ? formatDataForReport(reduced.income) : formatDataForReport(reduced.expense);
+  return txType === 'Income' ? formatBarChartData(reduced.income) : formatBarChartData(reduced.expense);
 }
 
-function formatDataForReport(obj) {
-  if(!obj) return {};
-  let category = [];
-  let data = []; 
-  for (const [key, value] of Object.entries(obj)) {
-    category.push(key);
-    data.push(value);
+export const getCategoryReportData = (transactions, txType) => {
+  const reduced = transactions.reduce((acc, { type, tags, amount }) => {
+    if (!acc[type]) { acc[type] = {} };
+    if (tags) {
+      acc[type][tags] =  0 || amount;
+    } else {
+       acc[type]['Others'] = (acc[type]['Others'] || 0) + amount;
+    }
+    return { ...acc }
+  }, []);
+  return txType === 'Income' ? formatPieChartData(reduced.income) : formatPieChartData(reduced.expense);
+}
+export const formatBarChartData = (txs) => {
+  if(!txs) return {};
+  let categories = [];
+  let series = []; 
+  for (const [key, value] of Object.entries(txs)) {
+    categories.push(key);
+    series.push(value);
   }
-  return {category, data};
+  return {categories, series};
 }
 
-function getGroupName(code) {
-  return GroupToTextMap[code];
+export const formatPieChartData = (txs) => {
+  if(!txs) return {};
+  let series = [];
+  for (const [key, value] of Object.entries(txs)) {
+    series.push({
+      'category': key,
+      'value': value,
+    });
+  }
+  return series;
 }
 
 function sortByName(a, b) {

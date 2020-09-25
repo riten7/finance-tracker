@@ -1,68 +1,42 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Financial Tracker
 
-## Available Scripts
+Finance tracker is a simple application that allow users to track their expenses and to analyze it. It can be helpful to advice and help the users to make smart financial decisions.
 
-In the project directory, you can run:
+### Installation
 
-### `yarn start`
+Install the dependencies and devDependencies and start the server.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```sh
+ run `npm install / yarn install`
+ run `npm start / yarn start`
+```
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Unit Test
 
-### `yarn test`
+Run the test with the following commands and generate test report coverage.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```sh
+run `yarn test`
+run `yarn test -- --coverage --watchAll=false`
 
-### `yarn build`
+### Tech Stack
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+* [React JS]
+* [React-Redux]
+* [Semantic Material UI, Ant Design] 
+* [Kendo React]
+* [Enzyme]
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Features!
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+  - User can create account that can be any bank account, cash, deposit, or asset.
+  - User can create a maximum of 4 accounts.
+  - User can carry out income and expense transaction on the selected account on specific date.
+  - Expense/Income transaction can be categorised as per user choice like rent, shopping, salary and so on.
+  - Transaction records is displayed on a table with pagination, and default sort by transaction date.
+  - User can filter the transaction between different periods.and results are shown in charts (bar chart and pie chart).
+  - Chart represents the expense/income report (bar chart) on specific account or by categories that theuy had spent on (pie chart).
+  - All the reports can be downloaded as pdf by the user as required.
+  - Charts can be helpful to provide insight into user’s spending habits using all records 
+between periods and make better financial decisions.
