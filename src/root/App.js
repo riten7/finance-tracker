@@ -2,8 +2,6 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import ParticlesBg from "particles-bg";
-
 import PrivateRoute from '../route/PrivateRoute';
 import AccountSetup from "../containers/account/AccountSetup";
 import Dashboard from '../containers/main/Dashboard';
@@ -17,7 +15,6 @@ function App() {
   const { accounts } = useSelector(state => state.accounts);
   return (
     <div className="App">
-      {/* <ParticlesBg type="random" bg={true}/> */}
       <Switch>
         <Route exact path='/setup' component={AccountSetup} />
         <PrivateRoute exact path='/' accounts={accounts} component={Dashboard} />

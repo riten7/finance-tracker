@@ -1,6 +1,6 @@
 # Financial Tracker
 
-Finance tracker is a simple application that allow users to track their expenses and to analyze it. It can be helpful to advice and help the users to make smart financial decisions.
+Finance tracker is a simple application that allow users to track their expenses and to analyze it. It helps the users to make smart financial decisions on their day-to-day life.
 
 ### Installation
 
@@ -30,13 +30,18 @@ run `yarn test -- --coverage --watchAll=false`
 
 # Features!
 
-  - User can create account that can be any bank account, cash, deposit, or asset.
+  - User can create account such as bank account, cash, deposit, or asset.
   - User can create a maximum of 4 accounts.
-  - User can carry out income and expense transaction on the selected account on specific date.
-  - Expense/Income transaction can be categorised as per user choice like rent, shopping, salary and so on.
-  - Transaction records is displayed on a table with pagination, and default sort by transaction date.
-  - User can filter the transaction between different periods.and results are shown in charts (bar chart and pie chart).
-  - Chart represents the expense/income report (bar chart) on specific account or by categories that theuy had spent on (pie chart).
+  - User can carry out income or expense transaction on the selected account and on specific date.
+  - Expense/Income transaction can be categorised as per user requirement such as rent, grocery, salary and so on.
+  - Transaction records are displayed on a table with pagination, and default sort by transaction date.
+  - User can filter the transaction report between different periods and results are shown in graphical presentation (bar chart and pie chart).
+  - The graphs represent the expense/income report (bar chart) on specific account and also by the categories that they had spent on (pie chart).
   - All the reports can be downloaded as pdf by the user as required.
-  - Charts can be helpful to provide insight into user’s spending habits using all records 
+  - Graphs can be helpful to provide insights into user’s spending habits using all records 
 between periods and make better financial decisions.
+
+
+
+
+
