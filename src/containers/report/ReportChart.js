@@ -5,11 +5,11 @@ import CategoryReport from './CategoryReport';
 
 const panes = [
   {
-    menuItem: 'Bar Chart',
+    menuItem: 'Account Report',
     render: () => <Tab.Pane attached={false}><AccountReport /></Tab.Pane>,
   },
   {
-    menuItem: 'Pie Chart',
+    menuItem: 'Category Report',
     render: () => <Tab.Pane attached={false}><CategoryReport /></Tab.Pane>,
   },
 ]
